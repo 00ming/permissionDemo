@@ -21,7 +21,9 @@ export default {
     // HelloWorld
   },
   created(){
-    },
+    console.log(this.$hasPermission())
+    
+  },
   methods: {
     login() {
       localStorage.removeItem('permissionList')

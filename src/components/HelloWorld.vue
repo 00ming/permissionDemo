@@ -9,6 +9,8 @@
     <div v-permission="3" @click="fun">权限3 点击事件</div>
     <div @click="openNewWindow">点击打开新窗口</div>
     <Sub v-permission="3" v-if="f"></Sub>
+    <div @click="pp(1)">函数中判断权限 权限1</div>
+    <div @click="pp(10)">函数中判断权限 权限10</div>
   </div>
 </template>
 
@@ -37,6 +39,9 @@ export default {
     },
     openNewWindow() {
       window.open(`${window.location.href}`,"newWindow", "width=1024, height=700, top=0, left=0, titlebar=no, menubar=no, scrollbars=yes, resizable=yes, status=yes, , toolbar=no, location=yes")
+    },
+    pp(i){
+      console.log(`权限${i}${this.$hasPermission(i)? '有':'没有'}权限`,'this.$hasPermission函数返回值:', this.$hasPermission(i))
     }
   },
   computed:{
@@ -48,7 +53,6 @@ export default {
       let key = CryptoJS.SHA256('permissionList') // SHA256加密
       let bytes = localStorage.getItem(key)
       bytes = CryptoJS.AES.decrypt(bytes, 'secret key 123')
-      console.log(bytes)
       let permissionList = bytes.toString(CryptoJS.enc.Utf8)
       this.$store.commit('updatePermession', JSON.parse(permissionList))
     }
