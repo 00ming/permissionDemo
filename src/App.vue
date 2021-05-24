@@ -20,21 +20,14 @@ export default {
   components: {
     // HelloWorld
   },
+  created(){
+    },
   methods: {
     login() {
-      this.$store.commit('updatePermession', [1,2,3,4,5])
+      localStorage.removeItem('permissionList')
       this.$router.push({ path: 'main' })
-    },
-    ff(){
-      console.log(1)
-    },
-    clear(){
-      this.$store.commit('updatePermession', [4])
-    },
-    updatePermission() {
       this.$store.commit('updatePermession', [1,2,3,4,5])
-      this.msg = 44
-    }
+    },
   },
   computed:{
     // ...mapGetters([
